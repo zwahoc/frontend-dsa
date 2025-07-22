@@ -1,0 +1,502 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/* General Styles */
+.content-wrapper {
+    width: 100%;
+    padding: 0px 30px;
+    max-width: 1440px;
+    margin: 60px auto;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.lineClamp-5 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+}
+
+.box-shadow {
+    box-shadow:
+        0px 7px 27px rgba(75, 54, 0, 0.05),
+        0px 2.92443px 11.28px rgba(75, 54, 0, 0.0359427),
+        0px 1.56354px 6.0308px rgba(75, 54, 0, 0.0298054),
+        0px 0.876509px 3.38082px rgba(48, 34, 0, 0.025),
+        0px 0.465507px 1.79553px rgba(75, 54, 0, 0.0201946),
+        0px 0.193708px 0.747159px rgba(75, 54, 0, 0.0140573);
+}
+
+.w-fit {
+    width: fit-content !important;
+}
+
+/* Font family */
+.font-dmSans {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Font sizes */
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+/* 12px */
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+/* 14px */
+.text-md {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+/* 16px */
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* 18px */
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+/* 20px */
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+/* 24px */
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+/* 30px */
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+/* 36px */
+.text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+/* 48px */
+.text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+}
+
+/* 60px */
+.text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+}
+
+/* 72px */
+.text-8xl {
+    font-size: 6rem;
+    line-height: 1;
+}
+
+/* 96px */
+.text-9xl {
+    font-size: 8rem;
+    line-height: 1;
+}
+
+/* Primary Background Colors */
+.bg-primary-50 {
+    background-color: #f0f3fe !important;
+}
+
+.bg-primary-100 {
+    background-color: #dde2fc !important;
+}
+
+.bg-primary-200 {
+    background-color: #c2cdfb !important;
+}
+
+.bg-primary-300 {
+    background-color: #98adf8 !important;
+}
+
+.bg-primary-400 {
+    background-color: #6784f3 !important;
+}
+
+.bg-primary-500 {
+    background-color: #4259ed !important;
+}
+
+.bg-primary-600 {
+    background-color: #2e3ae2 !important;
+}
+
+.bg-primary-700 {
+    background-color: #2629cf !important;
+}
+
+.bg-primary-800 {
+    background-color: #2625a8 !important;
+}
+
+.bg-primary-900 {
+    background-color: #232485 !important;
+}
+
+.bg-primary-950 {
+    background-color: #1a1a51 !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+/* Primary Text Colors */
+.text-primary-50 {
+    color: #f0f3fe !important;
+}
+
+.text-primary-100 {
+    color: #dde2fc !important;
+}
+
+.text-primary-200 {
+    color: #c2cdfb !important;
+}
+
+.text-primary-300 {
+    color: #98adf8 !important;
+}
+
+.text-primary-400 {
+    color: #6784f3 !important;
+}
+
+.text-primary-500 {
+    color: #4259ed !important;
+}
+
+.text-primary-600 {
+    color: #2e3ae2 !important;
+}
+
+.text-primary-700 {
+    color: #2629cf !important;
+}
+
+.text-primary-800 {
+    color: #2625a8 !important;
+}
+
+.text-primary-900 {
+    color: #232485 !important;
+}
+
+.text-primary-950 {
+    color: #1a1a51 !important;
+}
+
+/* Hover classes */
+.hover-nav {
+    transition: color 0.5s ease-in-out;
+}
+
+.hover-nav:hover {
+    color: #4259ed !important;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.hover-nav:active {
+    color: #98adf8 !important;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Hover Button classes */
+.hover-button {
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.hover-button:hover {
+    background-color: #4259ed !important;
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+
+/* Basis classes */
+.basis-0 {
+    flex-basis: 0% !important;
+}
+
+.basis-10 {
+    flex-basis: 10% !important;
+}
+
+.basis-20 {
+    flex-basis: 20% !important;
+}
+
+.basis-30 {
+    flex-basis: 30% !important;
+}
+
+.basis-40 {
+    flex-basis: 40% !important;
+}
+
+.basis-50 {
+    flex-basis: 50% !important;
+}
+
+.basis-60 {
+    flex-basis: 60% !important;
+}
+
+.basis-70 {
+    flex-basis: 70% !important;
+}
+
+.basis-80 {
+    flex-basis: 80% !important;
+}
+
+.basis-90 {
+    flex-basis: 90% !important;
+}
+
+.basis-100 {
+    flex-basis: 100% !important;
+}
+
+
+/* Gap classes */
+.gap-0 {
+    gap: 0px !important;
+}
+
+.gap-1 {
+    gap: 0.25rem !important;
+}
+
+/* 4px */
+.gap-2 {
+    gap: 0.5rem !important;
+}
+
+/* 8px */
+.gap-3 {
+    gap: 0.75rem !important;
+}
+
+/* 12px */
+.gap-4 {
+    gap: 1rem !important;
+}
+
+/* 16px */
+.gap-5 {
+    gap: 1.25rem !important;
+}
+
+/* 20px */
+.gap-6 {
+    gap: 1.5rem !important;
+}
+
+/* 24px */
+.gap-7 {
+    gap: 1.75rem !important;
+}
+
+/* 28px */
+.gap-8 {
+    gap: 2rem !important;
+}
+
+/* 32px */
+.gap-9 {
+    gap: 2.25rem !important;
+}
+
+/* 36px */
+.gap-10 {
+    gap: 2.5rem !important;
+}
+
+/* 40px */
+.gap-12 {
+    gap: 3rem !important;
+}
+
+/* 48px */
+.gap-14 {
+    gap: 3.5rem !important;
+}
+
+/* 56px */
+.gap-16 {
+    gap: 4rem !important;
+}
+
+/* 64px */
+.gap-20 {
+    gap: 5rem !important;
+}
+
+/* 80px */
+.gap-24 {
+    gap: 6rem !important;
+}
+
+/* 96px */
+.gap-28 {
+    gap: 7rem !important;
+}
+
+/* 112px */
+.gap-32 {
+    gap: 8rem !important;
+}
+
+/* 128px */
+.gap-36 {
+    gap: 9rem !important;
+}
+
+/* 144px */
+.gap-40 {
+    gap: 10rem !important;
+}
+
+/* 160px */
+.gap-44 {
+    gap: 11rem !important;
+}
+
+/* 176px */
+.gap-48 {
+    gap: 12rem !important;
+}
+
+/* 192px */
+.gap-52 {
+    gap: 13rem !important;
+}
+
+/* 208px */
+.gap-56 {
+    gap: 14rem !important;
+}
+
+/* 224px */
+.gap-60 {
+    gap: 15rem !important;
+}
+
+/* 240px */
+.gap-64 {
+    gap: 16rem !important;
+}
+
+/* 256px */
+.gap-72 {
+    gap: 18rem !important;
+}
+
+/* 288px */
+.gap-80 {
+    gap: 20rem !important;
+}
+
+/* 320px */
+.gap-96 {
+    gap: 24rem !important;
+}
+
+/* Landing Page Styles */
+
+/* Queue section styles */
+.fade-text {
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Doctor section styles */
+.doctor-card {
+    transition: all 0.5s ease;
+    width: 300px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-card .cardBody {
+    background-color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.doctor-card:hover .cardBody {
+    background-color: #4259ed;
+}
+
+.doctor-card:hover .doctorName {
+    color: white;
+}
+
+.doctor-card .overlay {
+    background-color: rgba(66, 89, 237, 0.25);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.doctor-card:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.testimonialSwiper .swiper-pagination-bullet {
+  background-color: #4259ed; /* Inactive */
+}
+
+.testimonialSwiper .swiper-pagination-bullet-active {
+  background-color: #dde2fc; /* Active */
+}
+
+@media (max-width: 1024px) {
+    .doctor-card {
+        flex: 0 0 calc(50% - 3.5rem);
+        /* two per row with gap */
+    }
+}
+
+@media (min-width: 1025px) {
+    .doctor-card {
+        flex: 0 0 auto;
+        /* allow 4 fixed cards with gap */
+    }
+}
+
+
+
+
+
