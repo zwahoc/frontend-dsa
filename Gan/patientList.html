@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <!-- Top Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-heart-pulse-fill text-primary me-2" style="font-size: 28px;"></i>
+                <span style="font-size: 24px; font-weight: bold; color: #007bff;">Doctris</span>
+            </a>
+            
+            <div class="d-flex align-items-center ms-auto">
+                <button class="btn btn-light me-2">
+                    <i class="bi bi-flag"></i>
+                </button>
+                <button class="btn btn-light me-2">
+                    <i class="bi bi-gear"></i>
+                </button>
+                <button class="btn btn-light me-3 position-relative">
+                    <i class="bi bi-bell"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;">4</span>
+                </button>
+                
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+                        <img src="../images/image.png" alt="Profile" class="rounded-circle me-2" width="40" height="40">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4 col-12 p-0">
+                <div class="bg-white shadow-sm vh-100 overflow-auto">
+                    <div class="p-4">
+                        <ul class="list-unstyled sidebar-nav">
+                            <li class="navbar-item mb-2">
+                                <a href="dashboard.html" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-dark" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.05)'; this.style.color='#007bff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#212529';">
+                                    <i class="bi bi-grid-fill me-3"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="navbar-item mb-2">
+                                <a href="appointment.html" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-dark" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.05)'; this.style.color='#007bff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#212529';">
+                                    <i class="bi bi-calendar-check me-3"></i> Appointment
+                                </a>
+                            </li>
+                            <li class="navbar-item mb-2">
+                                <a href="doctorCard.html" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-dark" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.05)'; this.style.color='#007bff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#212529';">
+                                    <i class="bi bi-people me-3"></i> Doctors
+                                </a>
+                            </li>
+                            <li class="navbar-item mb-2">
+                                <a href="#" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-primary" style="background-color: #e7f3ff;" onmouseover="this.style.backgroundColor='#cce7ff'; this.style.color='#0056b3';" onmouseout="this.style.backgroundColor='#e7f3ff'; this.style.color='#007bff';">
+                                    <i class="bi bi-person-hearts me-3"></i> Patients
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-9 col-md-8 col-12 p-4">
+                <!-- Header with title -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="m-0">Patient List</h3>
+                    <div class="d-flex align-items-center">
+                        <div class="input-group me-2" style="width: 300px;">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-search text-muted"></i>
+                            </span>
+                            <input type="text" class="form-control bg-light border-start-0" id="search-input" placeholder="Search patients...">
+                        </div>
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModal">
+                            <i class="bi bi-funnel"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Patient Cards -->
+                <div class="row g-4" id="patient-cards">
+                    <!-- Patient Card 1 -->
+                    <div class="col-xl-4 col-md-6 col-12 patient-card">
+                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="text-center pt-3">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Patient Photo" 
+                                     class="rounded-circle border border-3 border-light" width="120" height="120">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-center">John Johnson</h5>
+                                <div class="patient-details">
+                                    <p class="mb-1">Age: 45</p>
+                                    <p class="mb-1">Gender: Male</p>
+                                    <p class="mb-1">Department: Cardiology</p>
+                                    <p class="mb-1">Contact: (555) 123-4567</p>
+                                </div>
+                                <span class="badge bg-success-subtle text-success mt-2 px-3 py-2 rounded-pill">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Patient Card 2 -->
+                    <div class="col-xl-4 col-md-6 col-12 patient-card">
+                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="text-center pt-3">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Patient Photo" 
+                                     class="rounded-circle border border-3 border-light" width="120" height="120">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-center">Sarah Williams</h5>
+                                <div class="patient-details">
+                                    <p class="mb-1">Age: 37</p>
+                                    <p class="mb-1">Gender: Female</p>
+                                    <p class="mb-1">Department: Neurology</p>
+                                    <p class="mb-1">Contact: (555) 987-6543</p>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning mt-2 px-3 py-2 rounded-pill">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Card 3 -->
+                    <div class="col-xl-4 col-md-6 col-12 patient-card">
+                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="text-center pt-3">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Patient Photo" 
+                                     class="rounded-circle border border-3 border-light" width="120" height="120">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-center">Robert Brown</h5>
+                                <div class="patient-details">
+                                    <p class="mb-1">Age: 52</p>
+                                    <p class="mb-1">Gender: Male</p>
+                                    <p class="mb-1">Department: Orthopedic</p>
+                                    <p class="mb-1">Contact: (555) 456-7890</p>
+                                </div>
+                                <span class="badge bg-success-subtle text-success mt-2 px-3 py-2 rounded-pill">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Card 4 -->
+                    <div class="col-xl-4 col-md-6 col-12 patient-card">
+                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="text-center pt-3">
+                                <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Patient Photo" 
+                                     class="rounded-circle border border-3 border-light" width="120" height="120">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-center">Emily Davis</h5>
+                                <div class="patient-details">
+                                    <p class="mb-1">Age: 29</p>
+                                    <p class="mb-1">Gender: Female</p>
+                                    <p class="mb-1">Department: Pediatrics</p>
+                                    <p class="mb-1">Contact: (555) 234-5678</p>
+                                </div>
+                                <span class="badge bg-info-subtle text-info mt-2 px-3 py-2 rounded-pill">Scheduled</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Card 5 -->
+                    <div class="col-xl-4 col-md-6 col-12 patient-card">
+                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="text-center pt-3">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Patient Photo" 
+                                     class="rounded-circle border border-3 border-light" width="120" height="120">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-center">Michael Wilson</h5>
+                                <div class="patient-details">
+                                    <p class="mb-1">Age: 38</p>
+                                    <p class="mb-1">Gender: Male</p>
+                                    <p class="mb-1">Department: Dermatology</p>
+                                    <p class="mb-1">Contact: (555) 345-6789</p>
+                                </div>
+                                <span class="badge bg-success-subtle text-success mt-2 px-3 py-2 rounded-pill">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Card 6 -->
+                    <div class="col-xl-4 col-md-6 col-12 patient-card">
+                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="text-center pt-3">
+                                <img src="https://randomuser.me/api/portraits/women/35.jpg" alt="Patient Photo" 
+                                     class="rounded-circle border border-3 border-light" width="120" height="120">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-center">Lisa Martinez</h5>
+                                <div class="patient-details">
+                                    <p class="mb-1">Age: 41</p>
+                                    <p class="mb-1">Gender: Female</p>
+                                    <p class="mb-1">Department: Psychiatry</p>
+                                    <p class="mb-1">Contact: (555) 567-8901</p>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning mt-2 px-3 py-2 rounded-pill">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav aria-label="Patient list pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">
+                        <i class="bi bi-funnel me-2"></i>Filter Patients
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="filter-form">
+                        <div class="mb-3">
+                            <label for="filter-age" class="form-label">Age Range</label>
+                            <select class="form-select" id="filter-age">
+                                <option selected>All Ages</option>
+                                <option value="0-18">0-18 years</option>
+                                <option value="19-35">19-35 years</option>
+                                <option value="36-50">36-50 years</option>
+                                <option value="51+">51+ years</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filter-visit-date" class="form-label">Last Visit</label>
+                            <select class="form-select" id="filter-visit-date">
+                                <option selected>All Dates</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filter-status" class="form-label">Status</label>
+                            <select class="form-select" id="filter-status">
+                                <option selected>All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="resetFilters()">Reset</button>
+                    <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Search functionality
+        document.getElementById('search-input').addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            } else {
+                performSearch(); // Real-time search
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const patientCards = document.querySelectorAll('.patient-card');
+
+            patientCards.forEach(card => {
+                const patientInfo = card.textContent.toLowerCase();
+                if (patientInfo.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter functions
+        function applyFilters() {
+            const age = document.getElementById('filter-age').value;
+            const visitDate = document.getElementById('filter-visit-date').value;
+            const status = document.getElementById('filter-status').value;
+            
+            const patientCards = document.querySelectorAll('.patient-card');
+            
+            patientCards.forEach(card => {
+                let showCard = true;
+                const cardText = card.textContent.toLowerCase();
+                
+                // Filter by age
+                if (age && age !== 'All Ages') {
+                    if (!cardText.includes(age.toLowerCase())) {
+                        showCard = false;
+                    }
+                }
+                
+                // Filter by visit date
+                if (visitDate && visitDate !== 'All Dates') {
+                    // This is a simplified implementation
+                    // In a real app, you'd parse and compare actual dates
+                }
+                
+                // Filter by status
+                if (status && status !== 'All Status') {
+                    if (!cardText.includes(status.toLowerCase())) {
+                        showCard = false;
+                    }
+                }
+                
+                card.style.display = showCard ? '' : 'none';
+            });
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('filterModal'));
+            modal.hide();
+            
+            console.log('Filters applied:', { age, visitDate, status });
+        }
+        
+        function resetFilters() {
+            document.getElementById('filter-form').reset();
+            // Reset all select elements to their default values
+            document.getElementById('filter-age').selectedIndex = 0;
+            document.getElementById('filter-visit-date').selectedIndex = 0;
+            document.getElementById('filter-status').selectedIndex = 0;
+            
+            // Show all cards
+            const patientCards = document.querySelectorAll('.patient-card');
+            patientCards.forEach(card => {
+                card.style.display = '';
+            });
+        }
+    </script>
+</body>
+
+</html>
