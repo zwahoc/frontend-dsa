@@ -41,38 +41,8 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-3 col-md-4 col-12 p-0">
-                <div class="bg-white shadow-sm vh-100 overflow-auto">
-                    <div class="p-4">
-                        <ul class="list-unstyled sidebar-nav">
-                            <li class="navbar-item mb-2">
-                                <a href="dashboard.html" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-dark" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.05)'; this.style.color='#007bff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#212529';">
-                                    <i class="bi bi-grid-fill me-3"></i> Dashboard
-                                </a>
-                            </li>
-                            <li class="navbar-item mb-2">
-                                <a href="appointment.html" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-dark" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.05)'; this.style.color='#007bff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#212529';">
-                                    <i class="bi bi-calendar-check me-3"></i> Appointment
-                                </a>
-                            </li>
-                            <li class="navbar-item mb-2">
-                                <a href="doctorCard.html" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-dark" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.05)'; this.style.color='#007bff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#212529';">
-                                    <i class="bi bi-people me-3"></i> Doctors
-                                </a>
-                            </li>
-                            <li class="navbar-item mb-2">
-                                <a href="#" class="navbar-link d-flex align-items-center px-3 py-2 rounded text-decoration-none text-primary" style="background-color: #e7f3ff;" onmouseover="this.style.backgroundColor='#cce7ff'; this.style.color='#0056b3';" onmouseout="this.style.backgroundColor='#e7f3ff'; this.style.color='#007bff';">
-                                    <i class="bi bi-person-hearts me-3"></i> Patients
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Content Area -->
-            <div class="col-lg-9 col-md-8 col-12 p-4">
+            <!-- Main Content Area - Full Width -->
+            <div class="col-12 p-4">
                 <!-- Header with title -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h3 class="m-0">Patient List</h3>
@@ -89,124 +59,114 @@
                     </div>
                 </div>
 
-                <!-- Patient Cards -->
-                <div class="row g-4" id="patient-cards">
-                    <!-- Patient Card 1 -->
-                    <div class="col-xl-4 col-md-6 col-12 patient-card">
-                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
-                            <div class="text-center pt-3">
+                <!-- Patient List -->
+                <div class="bg-white rounded shadow-sm" id="patient-cards">
+                    <div class="list-group list-group-flush">
+                        <!-- Patient Item 1 -->
+                        <div class="list-group-item patient-card p-3 border-0" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="d-flex align-items-center">
                                 <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Patient Photo" 
-                                     class="rounded-circle border border-3 border-light" width="120" height="120">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold text-center">John Johnson</h5>
-                                <div class="patient-details">
-                                    <p class="mb-1">Age: 45</p>
-                                    <p class="mb-1">Gender: Male</p>
-                                    <p class="mb-1">Department: Cardiology</p>
-                                    <p class="mb-1">Contact: (555) 123-4567</p>
+                                     class="rounded-circle border border-2 border-light me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">John Johnson</h6>
+                                            <p class="mb-1 text-muted small">Age: 45 • Male • Cardiology</p>
+                                            <p class="mb-0 text-muted small">Contact: (555) 123-4567</p>
+                                        </div>
+                                        <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Active</span>
+                                    </div>
                                 </div>
-                                <span class="badge bg-success-subtle text-success mt-2 px-3 py-2 rounded-pill">Active</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Patient Card 2 -->
-                    <div class="col-xl-4 col-md-6 col-12 patient-card">
-                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
-                            <div class="text-center pt-3">
+
+                        <!-- Patient Item 2 -->
+                        <div class="list-group-item patient-card p-3 border-0" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="d-flex align-items-center">
                                 <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Patient Photo" 
-                                     class="rounded-circle border border-3 border-light" width="120" height="120">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold text-center">Sarah Williams</h5>
-                                <div class="patient-details">
-                                    <p class="mb-1">Age: 37</p>
-                                    <p class="mb-1">Gender: Female</p>
-                                    <p class="mb-1">Department: Neurology</p>
-                                    <p class="mb-1">Contact: (555) 987-6543</p>
+                                     class="rounded-circle border border-2 border-light me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Sarah Williams</h6>
+                                            <p class="mb-1 text-muted small">Age: 37 • Female • Neurology</p>
+                                            <p class="mb-0 text-muted small">Contact: (555) 987-6543</p>
+                                        </div>
+                                        <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
+                                    </div>
                                 </div>
-                                <span class="badge bg-warning-subtle text-warning mt-2 px-3 py-2 rounded-pill">Pending</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Patient Card 3 -->
-                    <div class="col-xl-4 col-md-6 col-12 patient-card">
-                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
-                            <div class="text-center pt-3">
+                        <!-- Patient Item 3 -->
+                        <div class="list-group-item patient-card p-3 border-0" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="d-flex align-items-center">
                                 <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Patient Photo" 
-                                     class="rounded-circle border border-3 border-light" width="120" height="120">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold text-center">Robert Brown</h5>
-                                <div class="patient-details">
-                                    <p class="mb-1">Age: 52</p>
-                                    <p class="mb-1">Gender: Male</p>
-                                    <p class="mb-1">Department: Orthopedic</p>
-                                    <p class="mb-1">Contact: (555) 456-7890</p>
+                                     class="rounded-circle border border-2 border-light me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Robert Brown</h6>
+                                            <p class="mb-1 text-muted small">Age: 52 • Male • Orthopedic</p>
+                                            <p class="mb-0 text-muted small">Contact: (555) 456-7890</p>
+                                        </div>
+                                        <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Active</span>
+                                    </div>
                                 </div>
-                                <span class="badge bg-success-subtle text-success mt-2 px-3 py-2 rounded-pill">Active</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Patient Card 4 -->
-                    <div class="col-xl-4 col-md-6 col-12 patient-card">
-                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
-                            <div class="text-center pt-3">
+                        <!-- Patient Item 4 -->
+                        <div class="list-group-item patient-card p-3 border-0" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="d-flex align-items-center">
                                 <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Patient Photo" 
-                                     class="rounded-circle border border-3 border-light" width="120" height="120">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold text-center">Emily Davis</h5>
-                                <div class="patient-details">
-                                    <p class="mb-1">Age: 29</p>
-                                    <p class="mb-1">Gender: Female</p>
-                                    <p class="mb-1">Department: Pediatrics</p>
-                                    <p class="mb-1">Contact: (555) 234-5678</p>
+                                     class="rounded-circle border border-2 border-light me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Emily Davis</h6>
+                                            <p class="mb-1 text-muted small">Age: 29 • Female • Pediatrics</p>
+                                            <p class="mb-0 text-muted small">Contact: (555) 234-5678</p>
+                                        </div>
+                                        <span class="badge bg-info-subtle text-info px-3 py-2 rounded-pill">Scheduled</span>
+                                    </div>
                                 </div>
-                                <span class="badge bg-info-subtle text-info mt-2 px-3 py-2 rounded-pill">Scheduled</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Patient Card 5 -->
-                    <div class="col-xl-4 col-md-6 col-12 patient-card">
-                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
-                            <div class="text-center pt-3">
+                        <!-- Patient Item 5 -->
+                        <div class="list-group-item patient-card p-3 border-0" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="d-flex align-items-center">
                                 <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Patient Photo" 
-                                     class="rounded-circle border border-3 border-light" width="120" height="120">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold text-center">Michael Wilson</h5>
-                                <div class="patient-details">
-                                    <p class="mb-1">Age: 38</p>
-                                    <p class="mb-1">Gender: Male</p>
-                                    <p class="mb-1">Department: Dermatology</p>
-                                    <p class="mb-1">Contact: (555) 345-6789</p>
+                                     class="rounded-circle border border-2 border-light me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Michael Wilson</h6>
+                                            <p class="mb-1 text-muted small">Age: 38 • Male • Dermatology</p>
+                                            <p class="mb-0 text-muted small">Contact: (555) 345-6789</p>
+                                        </div>
+                                        <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Active</span>
+                                    </div>
                                 </div>
-                                <span class="badge bg-success-subtle text-success mt-2 px-3 py-2 rounded-pill">Active</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Patient Card 6 -->
-                    <div class="col-xl-4 col-md-6 col-12 patient-card">
-                        <div class="card h-100 shadow-sm" onmouseover="this.classList.remove('shadow-sm'); this.classList.add('shadow');" onmouseout="this.classList.remove('shadow'); this.classList.add('shadow-sm');" onclick="window.location.href='patientprofile.html'" role="button">
-                            <div class="text-center pt-3">
+                        <!-- Patient Item 6 -->
+                        <div class="list-group-item patient-card p-3 border-0" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';" onclick="window.location.href='patientprofile.html'" role="button">
+                            <div class="d-flex align-items-center">
                                 <img src="https://randomuser.me/api/portraits/women/35.jpg" alt="Patient Photo" 
-                                     class="rounded-circle border border-3 border-light" width="120" height="120">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold text-center">Lisa Martinez</h5>
-                                <div class="patient-details">
-                                    <p class="mb-1">Age: 41</p>
-                                    <p class="mb-1">Gender: Female</p>
-                                    <p class="mb-1">Department: Psychiatry</p>
-                                    <p class="mb-1">Contact: (555) 567-8901</p>
+                                     class="rounded-circle border border-2 border-light me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Lisa Martinez</h6>
+                                            <p class="mb-1 text-muted small">Age: 41 • Female • Psychiatry</p>
+                                            <p class="mb-0 text-muted small">Contact: (555) 567-8901</p>
+                                        </div>
+                                        <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
+                                    </div>
                                 </div>
-                                <span class="badge bg-warning-subtle text-warning mt-2 px-3 py-2 rounded-pill">Pending</span>
                             </div>
                         </div>
                     </div>
