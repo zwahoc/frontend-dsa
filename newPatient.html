@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Patient</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100 font-dmSans">
+
+    <!-- Header -->
+    <div class="sticky-top bg-white font-dmSans">
+        <nav class="content-wrapper" style="margin: 0px auto !important;">
+            <div class="py-4 d-flex flex-row justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center justify-content-start text-primary-500 text-xl fw-bolder">
+                    TARUMT Clinic
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <ul class="nav d-flex flex-row justify-content-end gap-4 fw-semibold">
+                        <li class="hover-nav user-select-none">
+                            Home
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Doctors
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Book Appointment
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Online Queue
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Login as Staff
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container-fluid content-wrapper" style="margin: 0px auto !important; width:100%;">
+        <div class="row">
+            <!-- Main Content Area -->
+            <div class="p-4">
+                <!-- Header with title -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h3 class="m-0 fw-bolder">Patient Registration</h3>
+                </div>
+            </div>
+            
+            <!-- Appointment Form -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-xl-8 col-lg-10">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-calendar-plus me-2"></i>Patient Details
+                            </h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="patientForm">
+                                <!-- Patient Information Section -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h6 class="fw-bold text-primary mb-3">
+                                            <i class="bi bi-person-circle me-2"></i>Patient Information
+                                        </h6>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientName" class="form-label">Patient Name <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i
+                                                    class="fa-regular fa-user fa-sm"></i></span>
+                                            <input type="text" class="form-control" id="patientName" required
+                                                placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientId" class="form-label">Student ID <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i
+                                                    class="fa-regular fa-address-card fa-sm"></i></span>
+                                            <input type="tel" class="form-control" id="patientId" required
+                                                placeholder="Enter student ID">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientEmail" class="form-label">Email Address <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i
+                                                    class="fa-regular fa-envelope fa-sm"></i></span>
+                                            <input type="email" class="form-control" id="patientEmail" required
+                                                placeholder="patient@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientDOB" class="form-label">Date of Birth <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                            <input type="date" class="form-control" id="patientDOB" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientPhone" class="form-label">Phone Number <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                            <input type="text" class="form-control" id="patientPhone" required
+                                                placeholder="(555) 123-4567">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientEmergency" class="form-label">Emergency Phone Number
+                                            <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i
+                                                    class="bi bi-exclamation-triangle"></i></span>
+                                            <input type="tel" class="form-control" id="patientEmergency" required
+                                                placeholder="(555) 123-4567">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientGender" class="form-label">Gender <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
+                                            <select class="form-select" id="patientGender"
+                                                placeholder="Select gender..." required>
+                                                <option value="" disabled>Select gender...</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientAge" class="form-label">Age <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i
+                                                    class="fa-regular fa-calendar fa-sm"></i></span>
+                                            <input type="number" class="form-control" id="patientAge" min="1" max="120"
+                                                placeholder="Automated from DOB" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="d-flex justify-content-end gap-2">
+                                    <button type="button" class="btn btn-outline-danger" onclick="resetForm()">
+                                        <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                    </button>
+                                    <button type="submit"
+                                        class="border border-primary-subtle user-select-none rounded-2 text-primary-500 text-decoration-none p-2 px-4 hover-button w-fit bg-white">
+                                        <i class="bi bi-check-circle me-2"></i>Add to Queue
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        document.getElementById('patientForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const studentIdInput = document.getElementById('patientId');
+            const studentId = studentIdInput.value.trim().toUpperCase();
+            studentIdInput.value = studentId; // Optional: reflect in input field
+
+            if (!isValidStudentId(studentId)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Student ID',
+                    text: 'Student ID must follow the format: XXWMRXXXXX',
+                });
+                return;
+            }
+
+            if (!this.checkValidity()) {
+                this.classList.add('was-validated');
+                return;
+            }
+
+            const dobValue = document.getElementById('patientDOB').value;
+
+            if (!dobValue) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Date of Birth Missing',
+                    text: 'Please enter your date of birth to calculate age.',
+                    confirmButtonColor: '#e0a800'
+                });
+                return;
+            }
+
+
+            if (true) {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Patient Registered',
+                    text: 'The patient has been added to the queue successfully.',
+                    confirmButtonColor: '#3085d6'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Show loading for 2 seconds
+                        Swal.fire({
+                            title: 'Processing...',
+                            text: 'Please wait a moment.',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+
+                        setTimeout(() => {
+                            // Close loading and show your second confirmation
+                            Swal.close();
+                            document.getElementById('patientForm').reset();
+                            document.getElementById('patientForm').classList.remove('was-validated');
+
+                            // Your custom follow-up prompt
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'A201',
+                                text: 'This is your queue number. Please wait for your turn.',
+                                confirmButtonText: 'Yes',
+                                confirmButtonColor: '#28a745',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                            })
+                        }, 2000);
+                    }
+                });
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Add to Queue Failed',
+                    text: 'The patient is already in the queue.',
+                    confirmButtonColor: '#d33'
+                });
+            }
+
+        });
+
+
+
+
+        // Reset form function
+        function resetForm() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This will clear all the form fields.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, reset it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Reset the form after a short delay to allow the user to see the confirmation
+                    setTimeout(() => {
+                        document.getElementById('patientForm').reset();
+                        document.getElementById('patientForm').classList.remove('was-validated');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Form Reset',
+                            text: 'The form has been cleared successfully.',
+                            confirmButtonColor: '#3085d6'
+                        });
+                    }, 300);
+                }
+            });
+        }
+
+        function isValidStudentId(studentId) {
+            const regex = /^(\d{2})WMR\d{5}$/;
+            const match = studentId.match(regex);
+
+            if (!match) return false;
+
+            const yearPrefix = parseInt(match[1], 10);
+            return yearPrefix >= 20 && yearPrefix <= 25;
+        }
+
+
+        // Phone number validation 
+        document.getElementById('patientPhone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{1,3})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('patientEmergency').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{1,3})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('patientDOB').addEventListener('change', function () {
+            const dob = new Date(this.value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            const dayDiff = today.getDate() - dob.getDate();
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                age--;
+            }
+
+            document.getElementById('patientAge').value = age;
+        });
+
+
+        document.getElementById('patientDOB').max = new Date().toISOString().split('T')[0];
+
+    </script>
+</body>
+
+</html>

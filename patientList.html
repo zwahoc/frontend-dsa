@@ -66,8 +66,11 @@
                             <input type="text" class="form-control bg-light border-start-0" id="search-input"
                                 placeholder="Search patients...">
                         </div>
-                        <button class="btn btn-outline-secondary" type="button" id="filterModalBtn">
+                        <button class="btn btn-outline-secondary me-2" type="button" id="filterModalBtn">
                             <i class="fa-solid fa-filter"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary" type="button" id="removeFilterBtn">
+                            <i class="fa-solid fa-arrow-rotate-left"></i>
                         </button>
                     </div>
                 </div>
@@ -773,6 +776,10 @@
         document.getElementById('resetFiltersBtn').addEventListener('click', () => {
             resetFilters(); // your existing function
             closeModal();
+        });
+
+        document.getElementById('removeFilterBtn').addEventListener('click', () => {
+            resetFilters(); // your existing function
         });
 
         // Close buttons (they all use same ID, so select all of them)
