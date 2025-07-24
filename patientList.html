@@ -82,8 +82,10 @@
                                     <th scope="col">Student ID</th>
                                     <th scope="col">Age</th>
                                     <th scope="col">Gender</th>
-                                    <th scope="col">Last Visit</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col" class="sortable" onclick="sortByLastVisit()"><span class="me-1">Last
+                                            Visit</span><i class="fa-solid fa-sort fa-sm"></i></th>
+                                    <th scope="col" class="sortable" onclick="sortStatus()"><span
+                                            class="me-1">Status</span><i class="fa-solid fa-sort fa-sm"></i></th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -98,8 +100,10 @@
                                     <td class="align-middle" id="studentID">25WMR09920</td>
                                     <td class="align-middle" id="age">20</td>
                                     <td class="align-middle" id="gender">Male</td>
-                                    <td class="align-middle" id="lastVisit">2025-07-13</td>
-                                    <td class="align-middle" id="status"><span class="badge bg-success">Scheduled</span>
+                                    <td class="align-middle" id="lastVisit">2025-07-15</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-primary">
+                                            <icon class="fa-solid fa-calendar fa-sm me-1"></icon>Scheduled
+                                        </span>
                                     </td>
                                     <td class="align-middle">
                                         <div class="btn-group">
@@ -120,7 +124,9 @@
                                     <td class="align-middle" id="age">20</td>
                                     <td class="align-middle" id="gender">Male</td>
                                     <td class="align-middle" id="lastVisit">2025-07-13</td>
-                                    <td class="align-middle" id="status"><span class="badge bg-success">Scheduled</span>
+                                    <td class="align-middle" id="status"><span class="badge bg-warning text-dark">
+                                            <icon class="fa-solid fa-clock fa-sm me-1"></icon>Pending
+                                        </span>
                                     </td>
                                     <td class="align-middle">
                                         <div class="btn-group">
@@ -141,7 +147,145 @@
                                     <td class="align-middle" id="age">20</td>
                                     <td class="align-middle" id="gender">Female</td>
                                     <td class="align-middle" id="lastVisit">2025-07-13</td>
-                                    <td class="align-middle" id="status"><span class="badge bg-success">Scheduled</span>
+                                    <td class="align-middle" id="status"><span class="badge bg-success">
+                                            <icon class="fa-solid fa-circle-check fa-sm me-1"></icon>Completed
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-info">View</button>
+                                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Patient 1 -->
+                                <tr class="patient-row">
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">John Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" id="studentID">25WMR09920</td>
+                                    <td class="align-middle" id="age">20</td>
+                                    <td class="align-middle" id="gender">Male</td>
+                                    <td class="align-middle" id="lastVisit">2025-07-23</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-primary">
+                                            <icon class="fa-solid fa-calendar fa-sm me-1"></icon>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-info">View</button>
+                                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Patient 1 -->
+                                <tr class="patient-row">
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">John Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" id="studentID">25WMR09920</td>
+                                    <td class="align-middle" id="age">20</td>
+                                    <td class="align-middle" id="gender">Male</td>
+                                    <td class="align-middle" id="lastVisit">2025-07-13</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-warning text-dark">
+                                            <icon class="fa-solid fa-clock fa-sm me-1"></icon>Pending
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-info">View</button>
+                                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Patient 1 -->
+                                <tr class="patient-row">
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">John Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" id="studentID">25WMR09920</td>
+                                    <td class="align-middle" id="age">20</td>
+                                    <td class="align-middle" id="gender">Female</td>
+                                    <td class="align-middle" id="lastVisit">2025-07-19</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-success">
+                                            <icon class="fa-solid fa-circle-check fa-sm me-1"></icon>Completed
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-info">View</button>
+                                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Patient 1 -->
+                                <tr class="patient-row">
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">John Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" id="studentID">25WMR09920</td>
+                                    <td class="align-middle" id="age">20</td>
+                                    <td class="align-middle" id="gender">Male</td>
+                                    <td class="align-middle" id="lastVisit">2025-07-13</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-primary">
+                                            <icon class="fa-solid fa-calendar fa-sm me-1"></icon>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-info">View</button>
+                                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Patient 1 -->
+                                <tr class="patient-row">
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">John Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" id="studentID">25WMR09920</td>
+                                    <td class="align-middle" id="age">20</td>
+                                    <td class="align-middle" id="gender">Male</td>
+                                    <td class="align-middle" id="lastVisit">2025-07-11</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-warning text-dark">
+                                            <icon class="fa-solid fa-clock fa-sm me-1"></icon>Pending
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-info">View</button>
+                                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Patient 1 -->
+                                <tr class="patient-row">
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">John Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" id="studentID">25WMR09920</td>
+                                    <td class="align-middle" id="age">20</td>
+                                    <td class="align-middle" id="gender">Female</td>
+                                    <td class="align-middle" id="lastVisit">2025-07-13</td>
+                                    <td class="align-middle" id="status"><span class="badge bg-success">
+                                            <icon class="fa-solid fa-circle-check fa-sm me-1"></icon>Completed
+                                        </span>
                                     </td>
                                     <td class="align-middle">
                                         <div class="btn-group">
@@ -497,8 +641,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        let originalPatientRows = [];
+        let filteredRows = [];
         const rowsPerPage = 8;
         let currentPage = 1;
+        let currentStatusSortOrder = null; // null → ascending → descending
+        let lastVisitSortOrder = null;
 
         function paginatePatientRows(visibleRows = null) {
             const allRows = document.querySelectorAll('.patient-row');
@@ -559,8 +707,12 @@
 
         // Run on page load
         document.addEventListener('DOMContentLoaded', () => {
+            const rows = document.querySelectorAll('.patient-row');
+            originalPatientRows = Array.from(rows); // Store in original order
             paginatePatientRows();
         });
+
+
         // Search functionality
         document.getElementById('search-input').addEventListener('keyup', function (event) {
             if (event.key === 'Enter') {
@@ -785,25 +937,30 @@
                 if (showRow) visibleRows.push(row);
             });
 
+            filteredRows = visibleRows; // Store filtered rows for future reference
             currentPage = 1;
-            paginatePatientRows(visibleRows);
+            paginatePatientRows(filteredRows);
         }
 
         function resetFilters() {
             document.getElementById('filter-form').reset();
 
-            // Reset each individual field if needed
-            document.getElementById('filter-gender').selectedIndex = 0;
-            document.getElementById('filter-status').selectedIndex = 0;
-            document.getElementById('filter-visit-from').value = '';
-            document.getElementById('filter-visit-to').value = '';
-            document.getElementById('filter-frequency').value = '';
+            // Clear sort flags
+            currentStatusSortOrder = null;
+            lastVisitSortOrder = null;
 
-            // Show all rows
-            const appointmentRows = document.querySelectorAll('.patient-row');
-            appointmentRows.forEach(row => {
-                row.style.display = '';
+            const tbody = document.querySelector("table tbody");
+
+            // Re-append rows in original order
+            originalPatientRows.forEach(row => {
+                row.style.display = '';         // Show the row
+                tbody.appendChild(row);         // Restore original order
             });
+
+
+            // Reset to page 1 and paginate
+            currentPage = 1;
+            paginatePatientRows(originalPatientRows);
         }
 
         function openModalAnimated(modalElement) {
@@ -825,6 +982,81 @@
             }, 300); // match the transition duration
         }
 
+        function sortStatus() {
+            const table = document.querySelector("table");
+            const tbody = table.querySelector("tbody");
+
+            // Always sort ALL rows (even if they are currently hidden due to pagination)
+            const rows = Array.from(table.querySelectorAll(".patient-row"));
+
+            const orderMap = {
+                "scheduled": 1,
+                "pending": 2,
+                "completed": 3
+            };
+
+            // Clear all manual display styles first (show all rows for sorting)
+            rows.forEach(row => row.style.display = "");
+
+            // Sort logic
+            if (currentStatusSortOrder === 'asc') {
+                rows.sort((a, b) => {
+                    const aStatus = a.querySelector("#status").textContent.trim().toLowerCase();
+                    const bStatus = b.querySelector("#status").textContent.trim().toLowerCase();
+                    return (orderMap[bStatus] || 999) - (orderMap[aStatus] || 999);
+                });
+                currentStatusSortOrder = 'desc';
+            } else {
+                rows.sort((a, b) => {
+                    const aStatus = a.querySelector("#status").textContent.trim().toLowerCase();
+                    const bStatus = b.querySelector("#status").textContent.trim().toLowerCase();
+                    return (orderMap[aStatus] || 999) - (orderMap[bStatus] || 999);
+                });
+                currentStatusSortOrder = 'asc';
+            }
+
+            // Re-attach sorted rows to tbody
+            rows.forEach(row => tbody.appendChild(row));
+
+            // Reset page and re-paginate all rows
+            currentPage = 1;
+            paginatePatientRows(rows);  // Explicitly pass the full sorted row list
+        }
+
+        function sortByLastVisit() {
+            const tbody = document.querySelector("table tbody");
+
+            // If no filters were applied, use all rows
+            if (!filteredRows.length) {
+                filteredRows = [...originalPatientRows]; // clone it safely
+            }
+
+
+            if (lastVisitSortOrder === 'asc') {
+                filteredRows.sort((a, b) => {
+                    const aDate = new Date(a.querySelector("#lastVisit").textContent.trim());
+                    const bDate = new Date(b.querySelector("#lastVisit").textContent.trim());
+                    return bDate - aDate;
+                });
+                lastVisitSortOrder = 'desc';
+            } else {
+                filteredRows.sort((a, b) => {
+                    const aDate = new Date(a.querySelector("#lastVisit").textContent.trim());
+                    const bDate = new Date(b.querySelector("#lastVisit").textContent.trim());
+                    return aDate - bDate;
+                });
+                lastVisitSortOrder = 'asc';
+            }
+
+            // Re-attach only the filtered + sorted rows
+            filteredRows.forEach(row => {
+                row.style.display = ''; // ensure they're visible
+                tbody.appendChild(row);
+            });
+
+            currentPage = 1;
+            paginatePatientRows(filteredRows);
+        }
 
     </script>
 

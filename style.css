@@ -498,11 +498,13 @@
 }
 
 .testimonialSwiper .swiper-pagination-bullet {
-  background-color: #4259ed; /* Inactive */
+    background-color: #4259ed;
+    /* Inactive */
 }
 
 .testimonialSwiper .swiper-pagination-bullet-active {
-  background-color: #dde2fc; /* Active */
+    background-color: #dde2fc;
+    /* Active */
 }
 
 @media (max-width: 1024px) {
@@ -522,22 +524,44 @@
 
 /* Add to <style> or style.css */
 .modal-animate {
-  opacity: 0;
-  transform: scale(0.5);
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform-origin: center center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform-origin: center center;
 }
 
 .modal-animate.show {
-  opacity: 1;
-  transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
+}
+
+.pagination .page-link {
+    color: #4259ed;
+    /* primary blue */
+}
+
+.pagination .page-link:hover {
+    background-color: #e2e6ea;
+}
+
+.pagination .active .page-link {
+    background-color: #4259ed;
+    border-color: #4259ed;
+    color: white;
+}
+
+.pagination .disabled .page-link {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
 }
 
 
+/* Patient List Styles */
+.sortable {
+    cursor: pointer;
+}
 
-
-
-
-
-
-
+.sortable:hover {
+    text-decoration: underline;
+}
