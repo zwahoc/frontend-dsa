@@ -228,13 +228,36 @@
 
 /* Hover Button classes */
 .hover-button {
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .hover-button:hover {
     background-color: #4259ed !important;
     color: #ffffff !important;
     cursor: pointer;
+    border: 0px;
+}
+
+.cancel-button {
+    transition: all 0.5s ease-in-out;
+}
+
+.cancel-button:hover {
+    background-color: #ff0000 !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    border: 0px;
+}
+
+.reset-button {
+    transition: all 0.5s ease-in-out;
+}
+
+.reset-button:hover {
+    background-color: #22bb33 !important;
+    color: black !important;
+    cursor: pointer;
+    border: 0px;
 }
 
 
@@ -495,6 +518,24 @@
         /* allow 4 fixed cards with gap */
     }
 }
+
+
+/* Add to <style> or style.css */
+.modal-animate {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform-origin: center center;
+}
+
+.modal-animate.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+
 
 
 
