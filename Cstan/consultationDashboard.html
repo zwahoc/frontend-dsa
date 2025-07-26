@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap-icons.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="../bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+        .chart-container-small {
+            position: relative;
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .stats-card h4 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .stats-card p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100 font-dmSans bg-light">
+
+    <!-- Header -->
+    <div class="sticky-top bg-white font-dmSans shadow-sm">
+        <nav class="content-wrapper" style="margin: 0px auto !important;">
+            <div class="py-4 d-flex flex-row justify-content-between align-items-center">
+                <div class="d-flex align-items-center justify-content-start text-primary-500 text-xl fw-bolder">
+                    TARUMT Clinic
+                </div>
+                <div class="d-flex align-items-center">
+                    <ul class="nav d-flex flex-row justify-content-end gap-4 fw-semibold">
+                        <li class="hover-nav user-select-none">
+                            Home
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Doctors
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Reports
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Dashboard
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Settings
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container-fluid content-wrapper" style="margin: 0px auto !important; width:100%;">
+        <div class="p-4">
+            
+            <!-- Dashboard Header -->
+            <div class="dashboard-header text-center">
+                <h1 class="mb-2"><i class="bi bi-graph-up me-3"></i>Consultation Analytics Dashboard</h1>
+                <p class="mb-0">Monthly Consultation Summary & Diagnostic Reports</p>
+                <div class="mt-3">
+                    <span class="badge bg-light text-dark me-2">
+                        <i class="bi bi-calendar3 me-1"></i>Last Updated: <span id="lastUpdated"></span>
+                    </span>
+                    <span class="badge bg-light text-dark">
+                        <i class="bi bi-database me-1"></i>Total Records: <span id="totalRecords">0</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Key Statistics Cards -->
+            <div class="row mb-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card text-center">
+                        <h4 id="totalConsultations">0</h4>
+                        <p>Total Consultations This Month</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card text-center">
+                        <h4 id="avgDuration">0</h4>
+                        <p>Average Duration (minutes)</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card text-center">
+                        <h4 id="activeDoctors">0</h4>
+                        <p>Active Doctors</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card text-center">
+                        <h4 id="peakHour">--</h4>
+                        <p>Peak Hour</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Consultation Reports -->
+            <div class="row mb-4">
+                <!-- Monthly Consultations by Doctor -->
+                <div class="col-lg-8">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-bar-chart me-2"></i>Monthly Consultations by Doctor
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="monthlyConsultationsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Average Duration by Doctor -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-clock me-2"></i>Avg Duration by Doctor
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="avgDurationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peak Hours and Common Diagnosis -->
+            <div class="row mb-4">
+                <!-- Peak Hours Chart -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-clock-history me-2"></i>Peak Hours Analysis
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container-small">
+                                <canvas id="peakHoursChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top 10 Diagnoses -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-clipboard-data me-2"></i>Top 10 Most Frequent Diagnoses
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container-small">
+                                <canvas id="topDiagnosesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // ============================================================================
+        // DATA FORMATS AND SAMPLE DATA
+        // ============================================================================
+        
+        /*
+        EXPECTED DATA FORMATS:
+        
+        1. consultationData: Array of consultation objects
+        [
+            {
+                consultationId: "CONS123456",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-001",
+                patientAge: 25,
+                patientGender: "male",
+                diagnosis: "common-cold",
+                diagnosisName: "Common Cold",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T09:30:00.000Z",
+                endTime: "2025-07-27T09:45:00.000Z",
+                symptoms: "Fever, cough, runny nose",
+                treatmentNotes: "Rest, fluids, paracetamol"
+            },
+            // ... more consultation records
+        ]
+        
+        2. doctorData: Array of doctor objects (optional, for reference)
+        [
+            {
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                specialty: "General Medicine"
+            },
+            // ... more doctors
+        ]
+        */
+
+        // SAMPLE DATA - Replace this with your actual data
+        const sampleConsultationData = [
+            // Common Cold cases (most frequent)
+            {
+                consultationId: "CONS001",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-001",
+                patientAge: 25,
+                patientGender: "male",
+                diagnosis: "common-cold",
+                diagnosisName: "Common Cold",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T09:30:00.000Z",
+                endTime: "2025-07-27T09:45:00.000Z",
+                symptoms: "Sneezing, runny nose, mild cough",
+                treatmentNotes: "Rest, fluids, paracetamol"
+            },
+            {
+                consultationId: "CONS002",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-002",
+                patientAge: 8,
+                patientGender: "male",
+                diagnosis: "common-cold",
+                diagnosisName: "Common Cold",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T10:15:00.000Z",
+                endTime: "2025-07-27T10:30:00.000Z",
+                symptoms: "Fever, cough, runny nose",
+                treatmentNotes: "Children's paracetamol, rest"
+            },
+            {
+                consultationId: "CONS003",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-003",
+                patientAge: 42,
+                patientGender: "female",
+                diagnosis: "common-cold",
+                diagnosisName: "Common Cold",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T14:20:00.000Z",
+                endTime: "2025-07-26T14:35:00.000Z",
+                symptoms: "Sore throat, congestion",
+                treatmentNotes: "Throat lozenges, decongestant"
+            },
+            {
+                consultationId: "CONS004",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-004",
+                patientAge: 16,
+                patientGender: "female",
+                diagnosis: "common-cold",
+                diagnosisName: "Common Cold",
+                consultationDate: "2025-07-25",
+                callTime: "2025-07-25T11:45:00.000Z",
+                endTime: "2025-07-25T12:00:00.000Z",
+                symptoms: "Mild fever, stuffy nose",
+                treatmentNotes: "Rest, increase fluid intake"
+            },
+            
+            // Influenza cases
+            {
+                consultationId: "CONS005",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-005",
+                patientAge: 35,
+                patientGender: "male",
+                diagnosis: "influenza",
+                diagnosisName: "Influenza (Flu)",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T15:30:00.000Z",
+                endTime: "2025-07-27T15:50:00.000Z",
+                symptoms: "High fever, muscle aches, fatigue",
+                treatmentNotes: "Antiviral medication, bed rest"
+            },
+            {
+                consultationId: "CONS006",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-006",
+                patientAge: 28,
+                patientGender: "female",
+                diagnosis: "influenza",
+                diagnosisName: "Influenza (Flu)",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T16:15:00.000Z",
+                endTime: "2025-07-26T16:35:00.000Z",
+                symptoms: "Fever, chills, headache, body aches",
+                treatmentNotes: "Oseltamivir, rest, fluids"
+            },
+            {
+                consultationId: "CONS007",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-007",
+                patientAge: 52,
+                patientGender: "male",
+                diagnosis: "influenza",
+                diagnosisName: "Influenza (Flu)",
+                consultationDate: "2025-07-24",
+                callTime: "2025-07-24T13:20:00.000Z",
+                endTime: "2025-07-24T13:40:00.000Z",
+                symptoms: "High fever, severe fatigue, cough",
+                treatmentNotes: "Antiviral, monitor symptoms"
+            },
+            
+            // COVID-19 cases
+            {
+                consultationId: "CONS008",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-008",
+                patientAge: 31,
+                patientGender: "female",
+                diagnosis: "covid-19",
+                diagnosisName: "COVID-19",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T11:00:00.000Z",
+                endTime: "2025-07-27T11:25:00.000Z",
+                symptoms: "Fever, dry cough, loss of taste",
+                treatmentNotes: "Isolation, symptom monitoring"
+            },
+            {
+                consultationId: "CONS009",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-009",
+                patientAge: 24,
+                patientGender: "male",
+                diagnosis: "covid-19",
+                diagnosisName: "COVID-19",
+                consultationDate: "2025-07-25",
+                callTime: "2025-07-25T14:30:00.000Z",
+                endTime: "2025-07-25T14:55:00.000Z",
+                symptoms: "Fatigue, headache, mild fever",
+                treatmentNotes: "Home isolation, rest"
+            },
+            
+            // Allergic Rhinitis cases
+            {
+                consultationId: "CONS010",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-010",
+                patientAge: 22,
+                patientGender: "female",
+                diagnosis: "allergic-rhinitis",
+                diagnosisName: "Allergic Rhinitis",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T09:15:00.000Z",
+                endTime: "2025-07-26T09:30:00.000Z",
+                symptoms: "Sneezing, nasal congestion, itchy eyes",
+                treatmentNotes: "Antihistamines, avoid allergens"
+            },
+            {
+                consultationId: "CONS011",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-011",
+                patientAge: 19,
+                patientGender: "male",
+                diagnosis: "allergic-rhinitis",
+                diagnosisName: "Allergic Rhinitis",
+                consultationDate: "2025-07-24",
+                callTime: "2025-07-24T10:45:00.000Z",
+                endTime: "2025-07-24T11:00:00.000Z",
+                symptoms: "Runny nose, sneezing fits",
+                treatmentNotes: "Nasal spray, allergy medication"
+            },
+            
+            // Gastroenteritis cases
+            {
+                consultationId: "CONS012",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-012",
+                patientAge: 29,
+                patientGender: "female",
+                diagnosis: "gastroenteritis",
+                diagnosisName: "Gastroenteritis",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T12:30:00.000Z",
+                endTime: "2025-07-27T12:50:00.000Z",
+                symptoms: "Nausea, vomiting, diarrhea",
+                treatmentNotes: "Oral rehydration, bland diet"
+            },
+            {
+                consultationId: "CONS013",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-013",
+                patientAge: 37,
+                patientGender: "male",
+                diagnosis: "gastroenteritis",
+                diagnosisName: "Gastroenteritis",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T15:20:00.000Z",
+                endTime: "2025-07-26T15:45:00.000Z",
+                symptoms: "Stomach cramps, loose stools",
+                treatmentNotes: "Probiotics, clear fluids"
+            },
+            
+            // Migraine cases
+            {
+                consultationId: "CONS014",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-014",
+                patientAge: 33,
+                patientGender: "female",
+                diagnosis: "migraine",
+                diagnosisName: "Migraine",
+                consultationDate: "2025-07-25",
+                callTime: "2025-07-25T08:30:00.000Z",
+                endTime: "2025-07-25T08:50:00.000Z",
+                symptoms: "Severe headache, light sensitivity, nausea",
+                treatmentNotes: "Sumatriptan, dark room rest"
+            },
+            {
+                consultationId: "CONS015",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-015",
+                patientAge: 27,
+                patientGender: "female",
+                diagnosis: "migraine",
+                diagnosisName: "Migraine",
+                consultationDate: "2025-07-24",
+                callTime: "2025-07-24T17:15:00.000Z",
+                endTime: "2025-07-24T17:35:00.000Z",
+                symptoms: "Throbbing headache, visual aura",
+                treatmentNotes: "Pain relief medication, trigger avoidance"
+            },
+            
+            // Acute Pharyngitis cases
+            {
+                consultationId: "CONS016",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-016",
+                patientAge: 15,
+                patientGender: "male",
+                diagnosis: "acute-pharyngitis",
+                diagnosisName: "Acute Pharyngitis",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T13:45:00.000Z",
+                endTime: "2025-07-27T14:00:00.000Z",
+                symptoms: "Severe sore throat, difficulty swallowing",
+                treatmentNotes: "Throat gargle, pain relievers"
+            },
+            {
+                consultationId: "CONS017",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-017",
+                patientAge: 41,
+                patientGender: "male",
+                diagnosis: "acute-pharyngitis",
+                diagnosisName: "Acute Pharyngitis",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T11:30:00.000Z",
+                endTime: "2025-07-26T11:45:00.000Z",
+                symptoms: "Red, swollen throat, pain when talking",
+                treatmentNotes: "Antibiotics if bacterial, supportive care"
+            },
+            
+            // UTI cases
+            {
+                consultationId: "CONS018",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-018",
+                patientAge: 26,
+                patientGender: "female",
+                diagnosis: "uti",
+                diagnosisName: "Urinary Tract Infection (UTI)",
+                consultationDate: "2025-07-25",
+                callTime: "2025-07-25T16:00:00.000Z",
+                endTime: "2025-07-25T16:20:00.000Z",
+                symptoms: "Burning urination, frequent urination",
+                treatmentNotes: "Antibiotics, increase water intake"
+            },
+            {
+                consultationId: "CONS019",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-019",
+                patientAge: 34,
+                patientGender: "female",
+                diagnosis: "uti",
+                diagnosisName: "Urinary Tract Infection (UTI)",
+                consultationDate: "2025-07-24",
+                callTime: "2025-07-24T09:30:00.000Z",
+                endTime: "2025-07-24T09:50:00.000Z",
+                symptoms: "Pelvic pain, cloudy urine",
+                treatmentNotes: "Trimethoprim, cranberry supplements"
+            },
+            
+            // Tension Headache cases
+            {
+                consultationId: "CONS020",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-020",
+                patientAge: 38,
+                patientGender: "male",
+                diagnosis: "tension-headache",
+                diagnosisName: "Tension Headache",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T16:15:00.000Z",
+                endTime: "2025-07-27T16:30:00.000Z",
+                symptoms: "Dull, aching head pain, neck tension",
+                treatmentNotes: "Stress management, pain relievers"
+            },
+            
+            // Conjunctivitis cases
+            {
+                consultationId: "CONS021",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-021",
+                patientAge: 12,
+                patientGender: "female",
+                diagnosis: "conjunctivitis",
+                diagnosisName: "Conjunctivitis (Pink Eye)",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T08:45:00.000Z",
+                endTime: "2025-07-26T09:00:00.000Z",
+                symptoms: "Red, itchy eyes, discharge",
+                treatmentNotes: "Eye drops, warm compress"
+            },
+            
+            // Sinusitis cases
+            {
+                consultationId: "CONS022",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-022",
+                patientAge: 45,
+                patientGender: "male",
+                diagnosis: "sinusitis",
+                diagnosisName: "Sinusitis",
+                consultationDate: "2025-07-25",
+                callTime: "2025-07-25T13:20:00.000Z",
+                endTime: "2025-07-25T13:40:00.000Z",
+                symptoms: "Facial pain, thick nasal discharge",
+                treatmentNotes: "Decongestants, saline rinse"
+            },
+            
+            // Dermatitis cases
+            {
+                consultationId: "CONS023",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-023",
+                patientAge: 30,
+                patientGender: "female",
+                diagnosis: "dermatitis",
+                diagnosisName: "Dermatitis",
+                consultationDate: "2025-07-24",
+                callTime: "2025-07-24T14:15:00.000Z",
+                endTime: "2025-07-24T14:35:00.000Z",
+                symptoms: "Red, inflamed skin, itching",
+                treatmentNotes: "Topical corticosteroids, moisturizer"
+            },
+            
+            // Asthma cases
+            {
+                consultationId: "CONS024",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-024",
+                patientAge: 17,
+                patientGender: "male",
+                diagnosis: "asthma",
+                diagnosisName: "Asthma (Mild Episode)",
+                consultationDate: "2025-07-27",
+                callTime: "2025-07-27T17:30:00.000Z",
+                endTime: "2025-07-27T17:50:00.000Z",
+                symptoms: "Shortness of breath, wheezing",
+                treatmentNotes: "Inhaler, avoid triggers"
+            },
+            
+            // Additional diverse cases for better age/gender distribution
+            {
+                consultationId: "CONS025",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-025",
+                patientAge: 65,
+                patientGender: "male",
+                diagnosis: "muscle-strain",
+                diagnosisName: "Muscle Strain",
+                consultationDate: "2025-07-26",
+                callTime: "2025-07-26T12:15:00.000Z",
+                endTime: "2025-07-26T12:35:00.000Z",
+                symptoms: "Lower back pain, muscle stiffness",
+                treatmentNotes: "Rest, ice therapy, anti-inflammatory"
+            },
+            {
+                consultationId: "CONS026",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-026",
+                patientAge: 58,
+                patientGender: "female",
+                diagnosis: "anemia",
+                diagnosisName: "Anemia",
+                consultationDate: "2025-07-25",
+                callTime: "2025-07-25T10:30:00.000Z",
+                endTime: "2025-07-25T10:55:00.000Z",
+                symptoms: "Fatigue, dizziness, pale skin",
+                treatmentNotes: "Iron supplements, dietary changes"
+            },
+            {
+                consultationId: "CONS027",
+                doctorId: "dr-wong",
+                doctorName: "Dr. Michael Wong",
+                patientId: "patient-027",
+                patientAge: 7,
+                patientGender: "female",
+                diagnosis: "tonsillitis",
+                diagnosisName: "Tonsillitis",
+                consultationDate: "2025-07-24",
+                callTime: "2025-07-24T15:45:00.000Z",
+                endTime: "2025-07-24T16:05:00.000Z",
+                symptoms: "Swollen tonsils, difficulty swallowing",
+                treatmentNotes: "Antibiotics if bacterial, pain relief"
+            },
+            {
+                consultationId: "CONS028",
+                doctorId: "dr-tan",
+                doctorName: "Dr. Emily Tan",
+                patientId: "patient-028",
+                patientAge: 72,
+                patientGender: "male",
+                diagnosis: "dehydration",
+                diagnosisName: "Dehydration",
+                consultationDate: "2025-07-23",
+                callTime: "2025-07-23T11:20:00.000Z",
+                endTime: "2025-07-23T11:40:00.000Z",
+                symptoms: "Dry mouth, fatigue, dizziness",
+                treatmentNotes: "Fluid replacement, electrolyte balance"
+            },
+            {
+                consultationId: "CONS029",
+                doctorId: "dr-smith",
+                doctorName: "Dr. John Smith",
+                patientId: "patient-029",
+                patientAge: 14,
+                patientGender: "male",
+                diagnosis: "acute-bronchitis",
+                diagnosisName: "Acute Bronchitis",
+                consultationDate: "2025-07-23",
+                callTime: "2025-07-23T14:00:00.000Z",
+                endTime: "2025-07-23T14:20:00.000Z",
+                symptoms: "Persistent cough, chest congestion",
+                treatmentNotes: "Cough suppressant, rest, fluids"
+            },
+            {
+                consultationId: "CONS030",
+                doctorId: "dr-lee",
+                doctorName: "Dr. Sarah Lee",
+                patientId: "patient-030",
+                patientAge: 61,
+                patientGender: "female",
+                diagnosis: "fever-unknown",
+                diagnosisName: "Fever of Unknown Origin",
+                consultationDate: "2025-07-22",
+                callTime: "2025-07-22T16:30:00.000Z",
+                endTime: "2025-07-22T16:55:00.000Z",
+                symptoms: "Elevated temperature, general malaise",
+                treatmentNotes: "Further investigation, symptom monitoring"
+            }
+        ];
+
+        // ============================================================================
+        // DATA PROCESSING FUNCTIONS
+        // ============================================================================
+
+        // Function to process consultation data for analytics
+        function processConsultationData(consultationData) {
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            
+            // Filter current month data
+            const currentMonthData = consultationData.filter(consultation => {
+                const consultationDate = new Date(consultation.consultationDate);
+                return consultationDate.getMonth() === currentMonth && 
+                       consultationDate.getFullYear() === currentYear;
+            });
+
+            return {
+                all: consultationData,
+                currentMonth: currentMonthData
+            };
+        }
+
+        // Function to calculate consultation duration in minutes
+        function calculateDuration(callTime, endTime) {
+            const start = new Date(callTime);
+            const end = new Date(endTime);
+            return Math.round((end - start) / (1000 * 60)); // Convert to minutes
+        }
+
+        // Function to get consultation counts by doctor
+        function getConsultationsByDoctor(consultationData) {
+            const doctorCounts = {};
+            consultationData.forEach(consultation => {
+                const doctorName = consultation.doctorName;
+                doctorCounts[doctorName] = (doctorCounts[doctorName] || 0) + 1;
+            });
+            return doctorCounts;
+        }
+
+        // Function to get average duration by doctor
+        function getAvgDurationByDoctor(consultationData) {
+            const doctorDurations = {};
+            const doctorCounts = {};
+
+            consultationData.forEach(consultation => {
+                const doctorName = consultation.doctorName;
+                const duration = calculateDuration(consultation.callTime, consultation.endTime);
+                
+                if (!doctorDurations[doctorName]) {
+                    doctorDurations[doctorName] = 0;
+                    doctorCounts[doctorName] = 0;
+                }
+                
+                doctorDurations[doctorName] += duration;
+                doctorCounts[doctorName]++;
+            });
+
+            const avgDurations = {};
+            Object.keys(doctorDurations).forEach(doctor => {
+                avgDurations[doctor] = Math.round(doctorDurations[doctor] / doctorCounts[doctor]);
+            });
+
+            return avgDurations;
+        }
+
+        // Function to get peak hours
+        function getPeakHours(consultationData) {
+            const hourCounts = {};
+            
+            consultationData.forEach(consultation => {
+                const hour = new Date(consultation.callTime).getHours();
+                hourCounts[hour] = (hourCounts[hour] || 0) + 1;
+            });
+
+            return hourCounts;
+        }
+
+        // Function to get top diagnoses
+        function getTopDiagnoses(consultationData, limit = 10) {
+            const diagnosisCounts = {};
+            
+            consultationData.forEach(consultation => {
+                const diagnosis = consultation.diagnosisName;
+                diagnosisCounts[diagnosis] = (diagnosisCounts[diagnosis] || 0) + 1;
+            });
+
+            return Object.entries(diagnosisCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, limit)
+                .reduce((obj, [diagnosis, count]) => {
+                    obj[diagnosis] = count;
+                    return obj;
+                }, {});
+        }
+
+        // ============================================================================
+        // CHART INITIALIZATION AND RENDERING
+        // ============================================================================
+
+        let charts = {}; // Store chart instances for updates
+
+        // Initialize all charts
+        function initializeCharts(consultationData) {
+            const processedData = processConsultationData(consultationData);
+            
+            // Update statistics
+            updateStatistics(processedData);
+            
+            // Create charts
+            createMonthlyConsultationsChart(processedData.currentMonth);
+            createAvgDurationChart(processedData.currentMonth);
+            createPeakHoursChart(processedData.all);
+            createTopDiagnosesChart(processedData.all);
+        }
+
+        // Update statistics cards
+        function updateStatistics(processedData) {
+            const currentMonthData = processedData.currentMonth;
+            const allData = processedData.all;
+            
+            // Total consultations this month
+            document.getElementById('totalConsultations').textContent = currentMonthData.length;
+            
+            // Average duration
+            const totalDuration = currentMonthData.reduce((sum, consultation) => {
+                return sum + calculateDuration(consultation.callTime, consultation.endTime);
+            }, 0);
+            const avgDuration = currentMonthData.length > 0 ? Math.round(totalDuration / currentMonthData.length) : 0;
+            document.getElementById('avgDuration').textContent = avgDuration;
+            
+            // Active doctors
+            const activeDoctors = new Set(currentMonthData.map(c => c.doctorId)).size;
+            document.getElementById('activeDoctors').textContent = activeDoctors;
+            
+            // Peak hour
+            const peakHours = getPeakHours(allData);
+            const peakHour = Object.keys(peakHours).reduce((a, b) => peakHours[a] > peakHours[b] ? a : b);
+            document.getElementById('peakHour').textContent = peakHour ? `${peakHour}:00` : '--';
+            
+            // Total records
+            document.getElementById('totalRecords').textContent = allData.length;
+            
+            // Last updated
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString();
+        }
+
+        // Create Monthly Consultations Chart
+        function createMonthlyConsultationsChart(data) {
+            const ctx = document.getElementById('monthlyConsultationsChart').getContext('2d');
+            const consultationsByDoctor = getConsultationsByDoctor(data);
+            
+            charts.monthlyConsultations = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(consultationsByDoctor),
+                    datasets: [{
+                        label: 'Number of Consultations',
+                        data: Object.values(consultationsByDoctor),
+                        backgroundColor: [
+                            'rgba(74, 144, 226, 0.4)',   // Soft Blue
+                            'rgba(156, 39, 176, 0.4)',   // Soft Purple
+                            'rgba(26, 188, 156, 0.4)',   // Soft Teal
+                            'rgba(255, 167, 38, 0.4)',   // Soft Orange
+                            'rgba(239, 83, 80, 0.4)'     // Soft Red
+                        ],
+                        borderColor: [
+                            'rgba(74, 144, 226, 0.8)',
+                            'rgba(156, 39, 176, 0.8)',
+                            'rgba(26, 188, 156, 0.8)',
+                            'rgba(255, 167, 38, 0.8)',
+                            'rgba(239, 83, 80, 0.8)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create Average Duration Chart
+        function createAvgDurationChart(data) {
+            const ctx = document.getElementById('avgDurationChart').getContext('2d');
+            const avgDurations = getAvgDurationByDoctor(data);
+            
+            charts.avgDuration = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(avgDurations),
+                    datasets: [{
+                        data: Object.values(avgDurations),
+                        backgroundColor: [
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(155, 89, 182, 0.8)',
+                            'rgba(241, 196, 15, 0.8)',
+                            'rgba(230, 126, 34, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create Peak Hours Chart
+        function createPeakHoursChart(data) {
+            const ctx = document.getElementById('peakHoursChart').getContext('2d');
+            const peakHours = getPeakHours(data);
+            
+            // Create 24-hour labels
+            const hourLabels = Array.from({length: 24}, (_, i) => `${i}:00`);
+            const hourData = hourLabels.map((_, i) => peakHours[i] || 0);
+            
+            charts.peakHours = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: hourLabels,
+                    datasets: [{
+                        label: 'Consultations',
+                        data: hourData,
+                        borderColor: 'rgba(241, 196, 15, 1)',
+                        backgroundColor: 'rgba(241, 196, 15, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create Top Diagnoses Chart with Gender Breakdown
+        function createTopDiagnosesChart(data) {
+            const ctx = document.getElementById('topDiagnosesChart').getContext('2d');
+            const topDiagnoses = getTopDiagnoses(data);
+            
+            // Get gender breakdown for each top diagnosis
+            const maleData = [];
+            const femaleData = [];
+            
+            Object.keys(topDiagnoses).forEach(diagnosis => {
+                const maleCount = data.filter(consultation => 
+                    consultation.diagnosisName === diagnosis && consultation.patientGender === 'male'
+                ).length;
+                const femaleCount = data.filter(consultation => 
+                    consultation.diagnosisName === diagnosis && consultation.patientGender === 'female'
+                ).length;
+                
+                maleData.push(maleCount);
+                femaleData.push(femaleCount);
+            });
+            
+            charts.topDiagnoses = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(topDiagnoses),
+                    datasets: [
+                        {
+                            label: 'Male',
+                            data: maleData,
+                            backgroundColor: 'rgba(74, 144, 226, 0.4)',   // Soft Blue
+                            borderColor: 'rgba(74, 144, 226, 0.8)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Female',
+                            data: femaleData,
+                            backgroundColor: 'rgba(244, 67, 54, 0.4)',    // Soft Red
+                            borderColor: 'rgba(244, 67, 54, 0.8)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.x} cases`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: 'Number of Cases'
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            title: {
+                                display: true,
+                                text: 'Diagnosis'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ============================================================================
+        // MAIN INITIALIZATION AND DATA LOADING
+        // ============================================================================
+
+        // Function to load data and initialize dashboard
+        function loadDashboard(consultationData) {
+            try {
+                initializeCharts(consultationData);
+                console.log('Dashboard initialized successfully');
+            } catch (error) {
+                console.error('Error initializing dashboard:', error);
+            }
+        }
+
+        // Function to update dashboard with new data
+        function updateDashboard(consultationData) {
+            // Destroy existing charts
+            Object.values(charts).forEach(chart => {
+                if (chart) chart.destroy();
+            });
+            charts = {};
+            
+            // Reinitialize with new data
+            loadDashboard(consultationData);
+        }
+
+        // ============================================================================
+        // PAGE INITIALIZATION
+        // ============================================================================
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dashboard page loaded');
+            
+            // TO USE WITH REAL DATA:
+            // Replace sampleConsultationData with your actual data
+            // Example: loadDashboard(yourConsultationData);
+            
+            loadDashboard(sampleConsultationData);
+        });
+
+        // ============================================================================
+        // PUBLIC API FOR EXTERNAL DATA INTEGRATION
+        // ============================================================================
+
+        // Expose functions for external use
+        window.DashboardAPI = {
+            loadData: loadDashboard,
+            updateData: updateDashboard,
+            processData: processConsultationData,
+            calculateDuration: calculateDuration
+        };
+
+    </script>
+</body>
+
+</html>

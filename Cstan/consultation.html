@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Entry</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap-icons.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="../bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100 font-dmSans">
+
+    <!-- Header -->
+    <div class="sticky-top bg-white font-dmSans">
+        <nav class="content-wrapper" style="margin: 0px auto !important;">
+            <div class="py-4 d-flex flex-row justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center justify-content-start text-primary-500 text-xl fw-bolder">
+                    TARUMT Clinic
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <ul class="nav d-flex flex-row justify-content-end gap-4 fw-semibold">
+                        <li class="hover-nav user-select-none">
+                            Home
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Doctors
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Book Appointment
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Online Queue
+                        </li>
+                        <li class="hover-nav user-select-none">
+                            Login as Staff
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container-fluid content-wrapper" style="margin: 0px auto !important; width:100%;">
+        <div class="row">
+            <!-- Main Content Area -->
+            <div class="p-4">
+                <!-- Header with title -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h3 class="m-0 fw-bolder">Consultation Entry</h3>
+                </div>
+            </div>
+            
+            <!-- Consultation Form -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-xl-8 col-lg-10">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-clipboard-heart me-2"></i>Consultation Details
+                            </h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="consultationForm">
+                                <!-- Selection Section -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h6 class="fw-bold text-primary mb-3">
+                                            <i class="bi bi-person-plus me-2"></i>Consultation Information
+                                        </h6>
+                                    </div>
+                                    
+                                    <!-- Doctor Selection -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="doctorSelect" class="form-label">Select Doctor <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                                            <select class="form-select" id="doctorSelect" required>
+                                                <option value="" disabled selected>Choose a doctor...</option>
+                                                <option value="dr-smith">Dr. John Smith - General Medicine</option>
+                                                <option value="dr-lee">Dr. Sarah Lee - Cardiology</option>
+                                                <option value="dr-wong">Dr. Michael Wong - Dermatology</option>
+                                                <option value="dr-tan">Dr. Emily Tan - Pediatrics</option>
+                                                <option value="dr-lim">Dr. David Lim - Orthopedics</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Patient Selection -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="patientSelect" class="form-label">Select Patient <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+                                            <select class="form-select" id="patientSelect" required>
+                                                <option value="" disabled selected>Choose a patient...</option>
+                                                <option value="patient-001">John Doe - 22WMR12345</option>
+                                                <option value="patient-002">Jane Smith - 22WMR12346</option>
+                                                <option value="patient-003">Mike Johnson - 22WMR12347</option>
+                                                <option value="patient-004">Emily Brown - 22WMR12348</option>
+                                                <option value="patient-005">David Wilson - 22WMR12349</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Diagnosis Selection -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="diagnosisSelect" class="form-label">Primary Diagnosis <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-clipboard-plus"></i></span>
+                                            <select class="form-select" id="diagnosisSelect" required>
+                                                <option value="" disabled selected>Select diagnosis...</option>
+                                                <option value="common-cold">Common Cold</option>
+                                                <option value="hypertension">Hypertension</option>
+                                                <option value="diabetes">Diabetes Mellitus</option>
+                                                <option value="asthma">Asthma</option>
+                                                <option value="allergic-rhinitis">Allergic Rhinitis</option>
+                                                <option value="gastritis">Gastritis</option>
+                                                <option value="migraine">Migraine</option>
+                                                <option value="skin-allergy">Skin Allergy</option>
+                                                <option value="back-pain">Lower Back Pain</option>
+                                                <option value="other">Other (specify in notes)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Consultation Date -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="consultationDate" class="form-label">Consultation Date <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                            <input type="date" class="form-control" id="consultationDate" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Symptoms Section -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h6 class="fw-bold text-primary mb-3">
+                                            <i class="bi bi-clipboard-data me-2"></i>Clinical Information
+                                        </h6>
+                                    </div>
+                                    
+                                    <!-- Symptoms -->
+                                    <div class="col-12 mb-3">
+                                        <label for="symptoms" class="form-label">Symptoms <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-activity"></i></span>
+                                            <textarea class="form-control" id="symptoms" rows="4" required
+                                                placeholder="Describe the patient's symptoms and chief complaints..."></textarea>
+                                        </div>
+                                        <div class="form-text">Include onset, duration, severity, and associated symptoms</div>
+                                    </div>
+
+                                    <!-- Treatment Notes -->
+                                    <div class="col-12 mb-3">
+                                        <label for="treatmentNotes" class="form-label">Treatment Notes <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-prescription2"></i></span>
+                                            <textarea class="form-control" id="treatmentNotes" rows="5" required
+                                                placeholder="Treatment plan, medications prescribed, follow-up instructions..."></textarea>
+                                        </div>
+                                        <div class="form-text">Include medications, dosages, and any special instructions</div>
+                                    </div>
+                                </div>
+
+                                <!-- Hidden Fields -->
+                                <input type="hidden" id="callTime" name="callTime">
+                                <input type="hidden" id="endTime" name="endTime">
+
+                                <!-- Action Buttons -->
+                                <div class="d-flex justify-content-end gap-2">
+                                    <button type="button" class="btn btn-outline-danger" onclick="resetForm()">
+                                        <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                    </button>
+                                    <button type="submit"
+                                        class="border border-primary-subtle user-select-none rounded-2 text-primary-500 text-decoration-none p-2 px-4 hover-button w-fit bg-white">
+                                        <i class="bi bi-check-circle me-2"></i>Save Consultation
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize page with current date and call time
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default consultation date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('consultationDate').value = today;
+            
+            // Set call time when page loads
+            const callTime = new Date().toISOString();
+            document.getElementById('callTime').value = callTime;
+            
+            console.log('Page initialized at:', callTime);
+        });
+
+        // Form submission handler
+        document.getElementById('consultationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Set end time when form is submitted
+            const endTime = new Date().toISOString();
+            document.getElementById('endTime').value = endTime;
+
+            if (!this.checkValidity()) {
+                this.classList.add('was-validated');
+                return;
+            }
+
+            // Get form data
+            const formData = {
+                doctor: document.getElementById('doctorSelect').value,
+                patient: document.getElementById('patientSelect').value,
+                diagnosis: document.getElementById('diagnosisSelect').value,
+                consultationDate: document.getElementById('consultationDate').value,
+                symptoms: document.getElementById('symptoms').value,
+                treatmentNotes: document.getElementById('treatmentNotes').value,
+                callTime: document.getElementById('callTime').value,
+                endTime: document.getElementById('endTime').value
+            };
+
+            console.log('Consultation Data:', formData);
+
+            // Simulate saving consultation
+            Swal.fire({
+                icon: 'success',
+                title: 'Consultation Saved',
+                text: 'The consultation has been recorded successfully.',
+                confirmButtonColor: '#3085d6'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show loading for 2 seconds
+                    Swal.fire({
+                        title: 'Processing...',
+                        text: 'Saving consultation data...',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    setTimeout(() => {
+                        // Close loading and show confirmation
+                        Swal.close();
+                        
+                        // Generate consultation ID
+                        const consultationId = 'CONS' + Date.now().toString().slice(-6);
+                        
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Consultation ID: ' + consultationId,
+                            text: 'Consultation has been saved to the system.',
+                            confirmButtonText: 'Continue',
+                            confirmButtonColor: '#28a745',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                        }).then(() => {
+                            // Reset form after confirmation
+                            resetFormData();
+                        });
+                    }, 2000);
+                }
+            });
+        });
+
+        // Reset form function
+        function resetForm() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This will clear all the form fields.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, reset it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setTimeout(() => {
+                        resetFormData();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Form Reset',
+                            text: 'The form has been cleared successfully.',
+                            confirmButtonColor: '#3085d6'
+                        });
+                    }, 300);
+                }
+            });
+        }
+
+        function resetFormData() {
+            document.getElementById('consultationForm').reset();
+            document.getElementById('consultationForm').classList.remove('was-validated');
+            
+            // Reset to today's date and new call time
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('consultationDate').value = today;
+            const callTime = new Date().toISOString();
+            document.getElementById('callTime').value = callTime;
+            document.getElementById('endTime').value = '';
+        }
+
+        // Validate consultation date (should not be in the future beyond today)
+        document.getElementById('consultationDate').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            today.setHours(23, 59, 59, 999); // Set to end of today
+            
+            if (selectedDate > today) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Date',
+                    text: 'Consultation date cannot be in the future.',
+                    confirmButtonColor: '#e0a800'
+                });
+                this.value = new Date().toISOString().split('T')[0]; // Reset to today
+            }
+        });
+
+        // Set max date for consultation date to today
+        document.getElementById('consultationDate').max = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+
+</html>
